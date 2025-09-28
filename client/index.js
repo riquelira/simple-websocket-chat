@@ -15,7 +15,8 @@ function connectWebSocket(username) {
     });
 
     ws.addEventListener('close', () => {
-        console.log('Disconnected from WebSocket server'); // log
+        alert('Disconnected from WebSocket server. Click OK to try to reconnect.');
+        window.location.reload();
     });
 
     ws.addEventListener('message', data => {
@@ -42,6 +43,13 @@ function loadChat(ws) {
 
     input.addEventListener('keypress', e => {
         if (e.key === 'Enter') {
+            if (input.value.trim() === '') return;
+
+            if (ws.readyState !== WebSocket.OPEN) {
+                alert('WebSocket connection is not open. Refresh the page to reconnect.');
+                return;
+            }
+
             const userChatMessage = input.value;
 
             output.append(`(me) ${username}: ${userChatMessage}`, document.createElement('br'));

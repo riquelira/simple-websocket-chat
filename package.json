@@ -1,16 +1,16 @@
 {
-  "name": "simples-websocket-chat",
+  "name": "simple-websocket-chat",
   "version": "1.0.0",
-  "description": "",
+  "description": "chat using websocket",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./server/server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "ws": "^8.18.3"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --env-file=.env server/nodejs/server.js"
+  },
+  "author": "",
+  "license": "ISC"
 }

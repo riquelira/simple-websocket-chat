@@ -5,13 +5,14 @@ const WebSocket = require("ws");
 
 // Simple HTTP server
 const server = http.createServer((req, res) => {
+    clientPath = path.join(__dirname, "..", "..", "client");
     if (req.url === "/" || req.url === "/index.html") {
-        fs.readFile(path.join(__dirname, "..", "client", "index.html"), (err, data) => {
+        fs.readFile(path.join(clientPath, "index.html"), (err, data) => {
             res.writeHead(200, { "Content-Type": "text/html" });
             res.end(data);
         });
     } else if (req.url === "/index.js") {
-        fs.readFile(path.join(__dirname, "..", "client", "index.js"), (err, data) => {
+        fs.readFile(path.join(clientPath, "index.js"), (err, data) => {
             res.writeHead(200, { "Content-Type": "application/javascript" });
             res.end(data);
         });
@@ -27,8 +28,9 @@ server.listen(HTTP_PORT, () => {
 });
 
 // Simple WebSocket server
-const WS_PORT = 8081;
-const wss = new WebSocket.Server({ port: WS_PORT });
+const WS_HOST = process.env.WS_HOST;
+const WS_PORT = process.env.WS_PORT;
+const wss = new WebSocket.Server({ host: WS_HOST, port: WS_PORT });
 
 wss.on('connection', (ws) => {
 

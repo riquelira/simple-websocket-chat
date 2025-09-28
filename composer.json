@@ -1,0 +1,9 @@
+{
+    "require": {
+        "ext-swoole": "6.0.2"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "php server/php/server.php"
+    }
+}
